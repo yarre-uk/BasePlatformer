@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6791189396393647001}
   - component: {fileID: 6791189396393646997}
   - component: {fileID: 6791189396393647000}
-  - component: {fileID: 6791189396393647002}
   - component: {fileID: 1832017017}
   - component: {fileID: 841029239291645689}
   m_Layer: 0
@@ -190,9 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746d0dbe8ecf9504c9ed0eb93e09e52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanJumpOffWall: 0
-  CanJumpOffGraps: 0
-  GrabToWalls: 0
+  maxSpeed: 11
+  maxAcceleration: 100
+  maxDecceleration: 100
+  maxTurnSpeed: 150
+  friction: 0
   jumpHeight: 5
   timeToJumpApex: 0.5
   GravMultiplier: 1
@@ -201,29 +202,8 @@ MonoBehaviour:
   bufferTime: 0.15
   wallTime: 0.2
   coyoteTime: 0.15
-  forseToWall: 0
   forse: -1
   slower: 0.25
---- !u!114 &6791189396393647002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6791189396393646976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ac4d35e40dff9b46a30344655c398ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 11
-  maxAcceleration: 100
-  maxDecceleration: 100
-  maxTurnSpeed: 200
-  maxAirAcceleration: 100
-  maxAirDeceleration: 200
-  maxAirTurnSpeed: 200
-  friction: 0
 --- !u!114 &1832017017
 MonoBehaviour:
   m_ObjectHideFlags: 0

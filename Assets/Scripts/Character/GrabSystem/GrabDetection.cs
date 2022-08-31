@@ -4,18 +4,18 @@ using UnityEngine;
 public class GrabDetection : MonoBehaviour
 {
     private Rigidbody2D body;
-    private CharacterMovement characterMovement;
+    private GameController gameController;
 
     private float timer;
+    private bool isCrouching;
 
     public GameObject Grab;
     public GameObject Edge;
-    public GameController GameController;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-        characterMovement = GetComponent<CharacterMovement>();
+        gameController = GameController.Get();
     }
 
     public void SetNull()
@@ -28,13 +28,19 @@ public class GrabDetection : MonoBehaviour
     {
         if (Input.GetAxisRaw("Vertical") == -1)
         {
+            isCrouching = true;
             Grab = null;
+        }
+
+        else
+        {
+            isCrouching = false;
         }
     }
 
     private void FixedUpdate()
     {
-        if (!GameController.CanJumpOffGraps)
+        if (!gameController.CanJumpOffGraps)
         {
             return;
         }
@@ -45,7 +51,7 @@ public class GrabDetection : MonoBehaviour
 
             if (body.velocity.y < -0.01f && diff < 0.1)
             {
-                characterMovement.CanRun = false;
+                gameController.CanRun = false;
                 transform.position = Grab.transform.position;
                 body.velocity = new Vector2();
                 return;
@@ -55,11 +61,11 @@ public class GrabDetection : MonoBehaviour
         if (Edge != null)
         {
             var diff = transform.position.y - Edge.transform.position.y;
-            var check = Input.GetAxisRaw("Vertical") == -1 && Input.GetAxisRaw("Horizontal") != 0;
+            var check = isCrouching && Input.GetAxisRaw("Horizontal") != 0;
 
             if ((body.velocity.y < -0.01f && diff < 0.1) || check)
             {
-                characterMovement.CanRun = false;
+                gameController.CanRun = false;
                 transform.position = Edge.transform.position;
                 body.velocity = new Vector2();
 

@@ -10,11 +10,18 @@ namespace Assets.Scripts
         public bool CanJumpOffWall;
         public bool CanJumpOffGraps;
         public bool GrabToWalls;
+        public bool CanRun;
 
         [Header("Features")]
         public TMP_Text CanJumpOffWallText;
         public TMP_Text CanJumpOffGrapsText;
         public TMP_Text GrabToWallsText;
+
+        public static GameController Get()
+        {
+            return GameObject.FindGameObjectWithTag("GameController")
+                .GetComponent<GameController>();
+        }
 
         private void Update()
         {
